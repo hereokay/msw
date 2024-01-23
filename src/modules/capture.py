@@ -32,7 +32,6 @@ MMT_WIDTH = max(MM_TL_TEMPLATE.shape[1], MM_BR_TEMPLATE.shape[1])
 
 # The player's symbol on the minimap
 PLAYER_TEMPLATE = cv2.imread('assets/player_template.png', cv2.IMREAD_GRAYSCALE)
-print(PLAYER_TEMPLATE)
 PT_HEIGHT, PT_WIDTH = PLAYER_TEMPLATE.shape
 
 
@@ -95,8 +94,8 @@ class Capture:
                 continue
             # tl, _ = utils.single_match(self.frame, MM_TL_TEMPLATE)
             # _, br = utils.single_match(self.frame, MM_BR_TEMPLATE)
-            tl  = (210,358)
-            br = (461,518)
+            tl  = (12,69)
+            br = (180,250)
             
             mm_tl = (
                 tl[0] + MINIMAP_BOTTOM_BORDER,
@@ -124,9 +123,10 @@ class Capture:
                     minimap = self.frame[mm_tl[1]:mm_br[1], mm_tl[0]:mm_br[0]]
 
                     # Determine the player's position
-                    player = utils.multi_match(minimap, PLAYER_TEMPLATE, threshold=0.8)
+                    player = utils.multi_match(minimap, PLAYER_TEMPLATE, threshold=0.80)
                     if player:
                         config.player_pos = utils.convert_to_relative(player[0], minimap)
+                        print(config.player_pos[0],config.player_pos[1])
 
                     # Package display information to be polled by GUI
                     self.minimap = {
