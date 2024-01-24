@@ -92,10 +92,14 @@ class Capture:
                 self.frame = self.screenshot()
             if self.frame is None:
                 continue
-            # tl, _ = utils.single_match(self.frame, MM_TL_TEMPLATE)
-            # _, br = utils.single_match(self.frame, MM_BR_TEMPLATE)
-            tl  = (12,69)
-            br = (180,250)
+
+            # # 헤네시스동쪽풀숲
+            # tl  = (16,97)
+            # br = (400,269)
+            
+            # 헤네시스 사냥터2
+            tl  = (16,97)
+            br = (311,400)
             
             mm_tl = (
                 tl[0] + MINIMAP_BOTTOM_BORDER,
@@ -121,7 +125,8 @@ class Capture:
 
                     # Crop the frame to only show the minimap
                     minimap = self.frame[mm_tl[1]:mm_br[1], mm_tl[0]:mm_br[0]]
-
+                    
+                    
                     # Determine the player's position
                     player = utils.multi_match(minimap, PLAYER_TEMPLATE, threshold=0.80)
                     if player:
